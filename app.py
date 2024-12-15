@@ -76,6 +76,8 @@ with tab1:
                                                              "Ix":"{:.2f}", "Zx":"{:.2f}", "Sx":"{:.2f}", "rx":"{:.3f}",
                                                              "Iy":"{:.2f}", "Zy":"{:.2f}", "Sy":"{:.2f}", "ry":"{:.3f}",
                                                              "J":"{:.4f}", "Cw":"{:.2f}", "T":"{:.2f}"}))
+    st.image("Diagram.png")
+    st.write("Diagram created in LibreCAD")
     st.header("Design Details")
     report = comp.w_section_capacity_from_series(section, length_x, length_y, length_z, yield_stress, design_method, 
                                                kx=length_factor_x, ky=length_factor_y, kz=length_factor_z, value_only=True, return_report=True)
