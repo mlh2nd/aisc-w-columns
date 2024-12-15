@@ -193,17 +193,17 @@ def w_section_capacity(area, Ix, Iy, J, warping_constant, flange_width, flange_t
     effective_length_z = unbraced_length_z*kz
     flexural_buckling_stress = nominal_flexural_buckling_stress(yield_stress=yield_stress, slenderness=design_slenderness,
                                                                 elastic_modulus=elastic_modulus)
-    report.update({"Nominal flexural buckling stress (Eqns E3-2, E3-3)": [flexural_buckling_stress, "stress"]})
+    report.update({"Nominal flexural buckling stress (Equations E3-2, E3-3)": [flexural_buckling_stress, "stress"]})
     if x_brace_offset or y_brace_offset:
         torsional_buckling_stress = nominal_ft_buckling_stress_i_bracing_offset(yield_stress, effective_length_z, Ix, Iy, J, area,
                                                                                 r0, h0, x_brace_offset, y_brace_offset, 
                                                                                 elastic_modulus, shear_modulus)
-        report.update({"Nominal torsional buckling stress (Eqn E4-2)": [torsional_buckling_stress, "stress"]})
+        report.update({"Nominal torsional buckling stress (Equation E4-2)": [torsional_buckling_stress, "stress"]})
     else:
         torsional_buckling_stress = nominal_ft_buckling_stress_doubly_symmetric(yield_stress=yield_stress, z_effective_length=effective_length_z,
                                                                             warping_constant=warping_constant, Ix=Ix, Iy=Iy, J=J, 
                                                                             elastic_modulus=elastic_modulus, shear_modulus=shear_modulus)
-        report.update({"Nominal torsional buckling stress (Eqns E4-10, E4-12)": [torsional_buckling_stress, "stress"]})    
+        report.update({"Nominal torsional buckling stress (Equations E4-10, E4-12)": [torsional_buckling_stress, "stress"]})    
     if x_brace_offset and y_brace_offset:
         warnings.append("Torsional buckling results not valid with bracing offset in both axes.")
     
@@ -212,12 +212,12 @@ def w_section_capacity(area, Ix, Iy, J, warping_constant, flange_width, flange_t
     effective_area = w_section_effective_area(gross_area=area, flange_width=flange_width, flange_thickness=flange_thickness,
                                               section_depth=section_depth, kdes=kdes, web_thickness=web_thickness, 
                                               yield_stress=yield_stress, nominal_stress=nominal_stress)
-    report.update({"Effective area accounting for slender elements, Ae (Sect. E7)": [effective_area, "area"]})
+    report.update({"Effective area accounting for slender elements, Ae (Section E7)": [effective_area, "area"]})
     slender = dr.w_is_slender_comp(flange_width, flange_thickness, section_depth, kdes, web_thickness, yield_stress, elastic_modulus)
     if slender:
         notes.append("Shape is slender for compression.")
     nominal_compressive_strength = nominal_stress * effective_area
-    report.update({"Nominal compressive strength, Pn (Eqns E3-1, E4-1, E7-1)": [nominal_compressive_strength, "force"]})
+    report.update({"Nominal compressive strength, Pn (Equations E3-1, E4-1, E7-1)": [nominal_compressive_strength, "force"]})
 
     match design_method:
         case "nominal":
@@ -227,14 +227,14 @@ def w_section_capacity(area, Ix, Iy, J, warping_constant, flange_width, flange_t
                 return nominal_compressive_strength, warnings, notes
         case "LRFD":
             factored_strength = PHI_C * nominal_compressive_strength
-            report.update({"Resistance factor, φ": [PHI_C, ""], "Factored compressive strength, φPn": [factored_strength, "force"]})
+            report.update({"Resistance factor, φ (Section E1)": [PHI_C, ""], "Factored compressive strength, φPn": [factored_strength, "force"]})
             if return_report:
                 return report, warnings, notes
             else:
                 return factored_strength, warnings, notes
         case "ASD":
             allowable_strength = nominal_compressive_strength / OMEGA_C
-            report.update({"Safety factor, Ω": [OMEGA_C, ""], "Allowable compressive strength, Pn/Ω": [allowable_strength, "force"]})
+            report.update({"Safety factor, Ω (Section E1)": [OMEGA_C, ""], "Allowable compressive strength, Pn/Ω": [allowable_strength, "force"]})
             if return_report:
                 return report, warnings, notes
             else:

@@ -14,6 +14,8 @@ st.write("This webapp calculates the compression capacity of standard wide-flang
          the AISC _Steel Construction Manual_, with no differences exceeding 0.3\%.")
 st.write("Enter design parameters in the sidebar (on a mobile device, press the \">\" in the upper left corner to expand the sidebar). \
          Use the tabs below to see detailed design results for a single section or to see all sections that meet the design criteria.")
+st.write("Referenced equations are from Chapter E of the _Specification_. \
+         For more details, download the free PDF from the AISC website: https://www.aisc.org/Specification-for-Structural-Steel-Buildings-ANSIAISC-360-22-Download")
 
 
 with st.sidebar:
@@ -50,7 +52,7 @@ with tab1:
                                                kx=length_factor_x, ky=length_factor_y, kz=length_factor_z)
         st.write(f"Section Capacity: {round(capacity, 1)} kips")
         stress_ratio = applied_load/capacity
-        st.write(f"Demand/Capacity Ratio: {round(stress_ratio, 2)}")
+        st.write(f"Utilization Ratio: {round(stress_ratio, 2)}")
         if stress_ratio <= 1.0:
             st.write("DESIGN CHECK: OK")
         else:
@@ -74,7 +76,7 @@ with tab1:
                                                              "Ix":"{:.2f}", "Zx":"{:.2f}", "Sx":"{:.2f}", "rx":"{:.3f}",
                                                              "Iy":"{:.2f}", "Zy":"{:.2f}", "Sy":"{:.2f}", "ry":"{:.3f}",
                                                              "J":"{:.4f}", "Cw":"{:.2f}", "T":"{:.2f}"}))
-    st.header("Intermediate Results")
+    st.header("Design Details")
     report = comp.w_section_capacity_from_series(section, length_x, length_y, length_z, yield_stress, design_method, 
                                                kx=length_factor_x, ky=length_factor_y, kz=length_factor_z, value_only=True, return_report=True)
     units = {"":"", "force":"kip", "stress": "ksi", "area": "in²"}
