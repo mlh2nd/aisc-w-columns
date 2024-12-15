@@ -1,7 +1,7 @@
 import pandas as pd
 
 def aisc_w_sections()->pd.DataFrame:
-    filepath = __file__.replace("sections_db.py", "aisc_section_databases\\aisc_w_db_us.csv")
+    filepath = "aisc_section_databases\\aisc_w_db_us.csv"
     w_df = pd.read_csv(filepath).set_index("Section")
     return w_df
 
