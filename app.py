@@ -69,7 +69,11 @@ with tab1:
         else:
             st.write("No notes")
     st.header("Section Data")
-    st.table(pd.DataFrame(section).transpose())
+    st.table(pd.DataFrame(section).transpose().style.format({"W":"{:.1f}", "A":"{:.2f}", "d":"{:.2f}", "bf":"{:.2f}",
+                                                             "tw":"{:.3f}", "tf":"{:.3f}", "kdes":"{:.3f}",
+                                                             "Ix":"{:.2f}", "Zx":"{:.2f}", "Sx":"{:.2f}", "rx":"{:.3f}",
+                                                             "Iy":"{:.2f}", "Zy":"{:.2f}", "Sy":"{:.2f}", "ry":"{:.3f}",
+                                                             "J":"{:.4f}", "Cw":"{:.2f}", "T":"{:.2f}"}))
     st.header("Intermediate Results")
     report = comp.w_section_capacity_from_series(section, length_x, length_y, length_z, yield_stress, design_method, 
                                                kx=length_factor_x, ky=length_factor_y, kz=length_factor_z, value_only=True, return_report=True)
@@ -98,4 +102,5 @@ with tab2:
     filtered_sections = filtered_sections.loc[section_mask]
     filtered_sections = sd.sections_filter(sd.sections_filter(filtered_sections, "le", d=dmax), "ge", d=dmin)
     filtered_sections = sd.sections_filter(sd.sections_filter(filtered_sections, "le", bf=bmax), "ge", bf=bmin)
-    st.table(filtered_sections)
+    st.table(filtered_sections.style.format({"W":"{:.1f}", "d":"{:.2f}", "bf":"{:.2f}", "tw":"{:.3f}", "tf":"{:.3f}",
+                                             "Capacity":"{:.2f}", "SR":"{:.2f}"}))
