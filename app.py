@@ -16,7 +16,8 @@ st.write("Enter design parameters in the sidebar (on a mobile device, press the 
          Use the tabs below to see detailed design results for a single section or to see all sections that meet the design criteria.")
 st.write("Referenced equations are from Chapter E of the _Specification_. \
          For more details, download the free PDF from the AISC website: https://www.aisc.org/Specification-for-Structural-Steel-Buildings-ANSIAISC-360-22-Download")
-
+st.write("This webapp is provided for convenience only. All results must be verified by a qualified engineer before use \
+         in real-world structural design.")
 
 with st.sidebar:
     st.header("Design Parameters")
