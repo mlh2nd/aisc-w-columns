@@ -12,6 +12,8 @@ st.write("This webapp calculates the compression capacity of standard wide-flang
          It checks flexural buckling, torsional buckling, and slender elements. \
          The results have been checked for agreement with several configurations in Tables 4-1 and 6-1 of \
          the AISC _Steel Construction Manual_, with no differences exceeding 0.3\%.")
+st.write("Enter design parameters in the sidebar (on a mobile device, press the \">\" in the upper left corner to expand the sidebar). \
+         Use the tabs below to see detailed design results for a single section or to see all sections that meet the design criteria.")
 
 
 with st.sidebar:

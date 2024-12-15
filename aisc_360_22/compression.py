@@ -208,16 +208,16 @@ def w_section_capacity(area, Ix, Iy, J, warping_constant, flange_width, flange_t
         warnings.append("Torsional buckling results not valid with bracing offset in both axes.")
     
     nominal_stress = min(flexural_buckling_stress, torsional_buckling_stress)
-    report.update({"Governing nominal buckling stress": [nominal_stress, "stress"]})
+    report.update({"Governing nominal buckling stress, Fn": [nominal_stress, "stress"]})
     effective_area = w_section_effective_area(gross_area=area, flange_width=flange_width, flange_thickness=flange_thickness,
                                               section_depth=section_depth, kdes=kdes, web_thickness=web_thickness, 
                                               yield_stress=yield_stress, nominal_stress=nominal_stress)
-    report.update({"Effective area accounting for slender elements (Sect. E7)": [effective_area, "area"]})
+    report.update({"Effective area accounting for slender elements, Ae (Sect. E7)": [effective_area, "area"]})
     slender = dr.w_is_slender_comp(flange_width, flange_thickness, section_depth, kdes, web_thickness, yield_stress, elastic_modulus)
     if slender:
         notes.append("Shape is slender for compression.")
     nominal_compressive_strength = nominal_stress * effective_area
-    report.update({"Nominal compressive strength (Eqns E3-1, E4-1, E7-1)": [nominal_compressive_strength, "force"]})
+    report.update({"Nominal compressive strength, Pn (Eqns E3-1, E4-1, E7-1)": [nominal_compressive_strength, "force"]})
 
     match design_method:
         case "nominal":
