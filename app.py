@@ -11,13 +11,14 @@ st.write("This webapp calculates the compression capacity of standard wide-flang
          _Specification for Structural Steel Buildings_. \
          It checks flexural buckling, torsional buckling, and slender elements. \
          The results have been checked for agreement with several configurations in Tables 4-1 and 6-1 of \
-         the AISC _Steel Construction Manual_, with no differences exceeding 0.3\%.")
+         the AISC _Steel Construction Manual_, with no differences exceeding 1\%.")
 st.write("Enter design parameters in the sidebar (on a mobile device, press the \">\" in the upper left corner to expand the sidebar). \
          Use the tabs below to see detailed design results for a single section or to see all sections that meet the design criteria.")
 st.write("Referenced equations are from Chapter E of the _Specification_. \
          For more details, download the free PDF from the AISC website: https://www.aisc.org/Specification-for-Structural-Steel-Buildings-ANSIAISC-360-22-Download")
 st.write("This webapp is provided for convenience only. All results must be verified by a qualified engineer before use \
          in real-world structural design.")
+st.write("If any errors or bugs are encountered, please raise an issue on Github: https://github.com/mlh2nd/aisc-w-columns/issues")
 
 with st.sidebar:
     st.header("Design Parameters")
