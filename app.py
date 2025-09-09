@@ -31,9 +31,9 @@ with st.sidebar:
     st.write("Unbraced lengths and effective length factors:")
     colc, cold = st.columns(2)
     with colc:
-        length_x = st.number_input("Lx", min_value=0.0, step=0.01) * 12
-        length_y = st.number_input("Ly", min_value=0.0, step=0.01) * 12
-        length_z = st.number_input("Lz", min_value=0.0, step=0.01) * 12
+        length_x = st.number_input("Lx (ft)", min_value=0.0, step=0.01) * 12
+        length_y = st.number_input("Ly (ft)", min_value=0.0, step=0.01) * 12
+        length_z = st.number_input("Lz (ft)", min_value=0.0, step=0.01) * 12
     with cold:
         length_factor_x = st.number_input("Kx", min_value=0.0, step=0.01, value=1.0)
         length_factor_y = st.number_input("Ky", min_value=0.0, step=0.01, value=1.0)
